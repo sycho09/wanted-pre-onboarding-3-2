@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-// import Footer from './Footer';
-// import Header from './Header';
-// import Sidebar from './Sidebar';
+import Footer from './Footer';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 type Props = {
   breadcrumb?: string;
@@ -15,11 +15,11 @@ export default function MainLayout({
 }: Props): JSX.Element {
   return (
     <Wrapper>
-      {/* <Sidebar /> */}
+      <Sidebar />
       <Main>
-        {/* <Header breadcrumb={breadcrumb} /> */}
+        <Header breadcrumb={breadcrumb} />
         <StyledContent>{children}</StyledContent>
-        {/* <Footer /> */}
+        <Footer />
       </Main>
     </Wrapper>
   );
