@@ -2,6 +2,8 @@ import { ReactElement, useState } from 'react';
 import LoginLayout from '@components/LoginLayout';
 import Head from 'next/head';
 import { NextPageWithLayout } from './_app';
+import LoginForm from 'feature/Login/LoginForm';
+import useLogin from 'feature/Login/useLogin';
 
 const Home: NextPageWithLayout = () => {
   const [login, setLogin] = useState({
@@ -9,7 +11,7 @@ const Home: NextPageWithLayout = () => {
     password: '',
   });
 
-  // const { mutate, error, isLoading } = useLogin();
+  const { mutate, error, isLoading, data } = useLogin();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,13 +20,17 @@ const Home: NextPageWithLayout = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('asdf');
-    // mutate(login);
+    mutate(login);
+    if (data) console.log(data);
   };
 
-  // if (error) {
-  //   return <p>Oops! 에러가 발생했습니다</p>;
-  // }
+  if (error) {
+    return <p>Oops! 에러가 발생했습니다</p>;
+  }
+
+  if (isLoading) {
+    return <p>Loading</p>;
+  }
 
   return (
     <>
@@ -35,17 +41,10 @@ const Home: NextPageWithLayout = () => {
       </Head>
 
       <p>로그인</p>
-      <form onSubmit={handleSubmit}>
-        <p>E-MAIL</p>
-        <input name="email" type="email" onChange={(e) => handleChange(e)} />
-        <p>PASSWORD</p>
-        <input
-          name="password"
-          type="password"
-          onChange={(e) => handleChange(e)}
-        />
-        <button type="submit">제출</button>
-      </form>
+      {JSON.stringify(isLoading)}
+      <br />
+      {JSON.stringify(data)}
+      <LoginForm handleChange={handleChange} handleSubmit={handleSubmit} />
     </>
   );
 };
