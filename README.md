@@ -14,29 +14,29 @@
 
 2. 계좌 목록
    - 표기되어야 하는 정보
-     - [ ] 고객명(user_name) : 고객ID 를 참조하여 실제 이름으로 보여져야 합니다.
+     - [x] 고객명(user_name) : 고객ID 를 참조하여 실제 이름으로 보여져야 합니다.
        - 고객명을 누를 경우 사용자 상세화면으로 이동합니다.
-     - [ ] 브로커명(broker_name) : 예시) OO증권, `brokers.json` 를 참조하여 실제 이름으로 보여져야 합니다.
-     - [ ] 계좌번호(number) : 앞 뒤 각각 두글자를 제외하고 나머지는 글자수에 맞게 `*` 글자로 마스킹 처리가 필요합니다.
-     - [ ] 계좌상태(status) : 예시) 운용중, `accountStatus.json` 를 참조하여 실제 이름으로 보여져야 합니다.
-     - [ ] 계좌명(name) : 계좌명입니다.
-     - [ ] 평가금액(assets) : 예시) 123,123,123
-     - [ ] 입금금액(payments) : 예시) 123,123,123
-     - [ ] 계좌활성화여부(is_active) : 계좌 활성화 여부
-     - [ ] 계좌개설일(created_at) :
+     - [x] 브로커명(broker_name) : 예시) OO증권, `brokers.json` 를 참조하여 실제 이름으로 보여져야 합니다.
+     - [x] 계좌번호(number) : 앞 뒤 각각 두글자를 제외하고 나머지는 글자수에 맞게 `*` 글자로 마스킹 처리가 필요합니다.
+     - [x] 계좌상태(status) : 예시) 운용중, `accountStatus.json` 를 참조하여 실제 이름으로 보여져야 합니다.
+     - [x] 계좌명(name) : 계좌명입니다.
+     - [x] 평가금액(assets) : 예시) 123,123,123
+     - [x] 입금금액(payments) : 예시) 123,123,123
+     - [x] 계좌활성화여부(is_active) : 계좌 활성화 여부
+     - [x] 계좌개설일(created_at) :
    - 구현되어야 하는 기능
      - [ ] 목록에서는 브로커명, 계좌 활성화 여부, 계좌 상태를 필터링 할 수 있어야 합니다.
      - [ ] 리스트 페이지에서는 검색이 가능해야 합니다.
        - `json-server` 의 Full-text Search API 를 사용하여 구현합니다.
        - 예시 : GET [http://localhost:3000/accounts?q=South](http://localhost:3000/accounts?q=South)
-     - [ ] 페이지네이션이 되어야 합니다.
+     - [x] 페이지네이션이 되어야 합니다.
        - `json-server` 의 Paginate API 를 사용하여 구현합니다.
        - 예시 : GET [http://localhost:3000/accounts?\_page=2&\_limit=20](http://localhost:3000/accounts?%5C%5C_page=2&%5C%5C_limit=20)
 3. 상세
    - [ ] 각 사용자, 계좌의 상세 페이지는 획득 가능한 대부분의 정보를 표시해주시면 됩니다.
 4. 조건
 
-   - [ ] Sider 메뉴에서는 현재 보고 있는 화면에 해당하는 메뉴가 하이라이트 되어야 합니다.
+   - [x] Sider 메뉴에서는 현재 보고 있는 화면에 해당하는 메뉴가 하이라이트 되어야 합니다.
    - [ ] 새로고침을 해도 로그인 상태가 유지되어야 하며, 상태에 따라 기존에 머무르던 화면이 그대로 보여야 합니다.
    - [ ] 계좌 리스트에서 계좌번호를 누르면 계좌상세 화면으로 이동합니다.
    - [ ] 계좌 리스트에서 사용자 이름을 누르면 사용자 상세로 이동합니다.
@@ -60,3 +60,15 @@
    - [ ] 인증된 사용자만 CRUD(생성, 조회, 수정, 삭제) 가 가능해야 합니다.
      - 별도의 회원가입 기능은 필요하지 않습니다.
      - API 호출 예시 참고해서 임의 사용자 생성 후 개발
+
+## 라이브러리 및 프로젝트 특징
+
+- Typescript
+- Styled-components
+- Nextjs
+- React-query
+- Recoil/Redux
+- Free design pattern (Feature Folders recommended) [참고](http://robinwieruch.de/react-folder-structure)
+  - 특징이 비슷한 컴포넌트(specific feature related components)를 일반 UI 컴포넌트와 따로 분리하는 구조
+    = 재사용 가능한 컴포넌트(e.g. Button)와 특정 기능 관련 컴포넌트(e.g. Message)를 분리
+  - feature 컴포넌트에는 재사용 컴포넌트가 다시 사용될 수 있으며 필요하다면 service 관련 도메인 로직도 추가
