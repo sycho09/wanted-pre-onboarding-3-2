@@ -1,4 +1,4 @@
-import { AccountStatusNumber } from './AccountStatusConverter';
+import { AccountStatusNumber } from './accountStatusConverter';
 import { BrokerIds } from './brokerNameConverter';
 
 export type Auth = {
@@ -23,8 +23,8 @@ export type Account = {
   assets: string;
   payments: string;
   is_active: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string | Date;
+  updated_at: string | Date;
   user_name?: string;
 };
 
