@@ -9,11 +9,6 @@ export const FilterKeyword = atom<
   default: '',
 });
 
-export const FilteredList = atom({
-  key: 'FilteredList',
-  default: [],
-});
-
 export const AccountsLength = atom({
   key: 'AccountsLength',
   default: 0,
@@ -24,7 +19,20 @@ export const UserAddedList = atom<Account[]>({
   default: [],
 });
 
-export const Username = atom<string>({
-  key: 'Username',
-  default: '',
+export const FilterItem = atom({
+  key: 'FilterItem',
+  default: {
+    broker_id: '브로커명',
+    status: '계좌상태',
+    is_active: '활성화상태',
+  },
+});
+
+export const FilterItemKey = atom({
+  key: 'FilterItemKey',
+  default: {
+    broker_id: '',
+    status: '',
+    is_active: '',
+  },
 });

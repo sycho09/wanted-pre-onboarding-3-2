@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { AccountService } from 'feature/Accounts/AccountService';
+import { AccountService } from 'service/AccountService';
 import { API_URL } from '@utils/config';
 import { AxiosError } from 'axios';
 
@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { _page, q } = req.query;
+    const { _page, q, broker_id, status, is_active } = req.query;
     const hasCookie = req.cookies;
 
     const AccountInstance = new AccountService(API_URL, {
@@ -19,20 +19,26 @@ export default async function handler(
 
     if (q) {
       const { headers, data } = await AccountInstance.getTotalAccounts(
-        `/accounts?_limit=35&_page=${_page}&q=${q}`
+        `/accounts?_limit=35&_page=${_page}&q=${q}` +
+          (!!broker_id ? `&broker_id=${broker_id}` : '') +
+          (!!status ? `&status=${status}` : '') +
+          (is_active !== '' ? `&is_active=${is_active}` : '')
       );
       return res.status(200).json({ headers, data, hasCookie });
     }
 
     if (!q) {
+      const endpoint =
+        `/accounts?_limit=35&_page=${_page}` +
+        (!!broker_id ? `&broker_id=${broker_id}` : '') +
+        (!!status ? `&status=${status}` : '') +
+        (!!is_active ? `&is_active=${is_active}` : '');
+      console.log('account', endpoint);
       const { headers, data } = await AccountInstance.getTotalAccounts(
-        `/accounts?_limit=35&_page=${_page}`
+        endpoint
       );
       return res.status(200).json({ headers, data, hasCookie });
     }
-
-    // console.log(response);
-    // console.log(response.headers.link?.split(',').pop());
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.toJSON());

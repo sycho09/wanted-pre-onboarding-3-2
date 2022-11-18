@@ -1,4 +1,3 @@
-import { BrokerIds, BrokerNames } from '@utils/brokerNameConverter';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { FilterKeyword } from './atom';
@@ -11,9 +10,7 @@ export default function useDropDown() {
     setIsToggled((isToggled) => !isToggled);
   };
 
-  const handleSelectedItem = (
-    item: string | boolean | number | BrokerNames | BrokerIds
-  ) => {
+  const handleSelectedItem = (item: any) => {
     setSelectedItem(item);
     setIsToggled((isToggled) => !isToggled);
   };
@@ -21,8 +18,8 @@ export default function useDropDown() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClick = (e) => {
-      const { target } = e;
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as Element;
       const isInDropDown = target.closest('.dropdown');
 
       if (!isInDropDown && isToggled) setIsToggled(false);
