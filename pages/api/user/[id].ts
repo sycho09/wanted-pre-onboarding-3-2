@@ -1,7 +1,7 @@
 import { API_URL } from '@utils/config';
 import { User } from '@utils/types';
 import { AxiosError } from 'axios';
-import { UserService } from 'feature/Users/UserService';
+import { UserService } from 'service/UserService';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
