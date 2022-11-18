@@ -1,6 +1,6 @@
 import { API_URL } from '@utils/config';
 import { AxiosError } from 'axios';
-import { AuthService } from 'feature/Login/AuthService';
+import { AuthService } from 'service/AuthService';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(

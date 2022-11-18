@@ -14,7 +14,6 @@ const defaultValue = {
 export default function Form() {
   const [isAdding, setIsAdding] = useState(false);
   const [addUser, setAddUser] = useState(defaultValue);
-  const [accountsList, setAccountsList] = useRecoilState(UserAddedList);
 
   const { mutate } = useCreateUser();
   const { generateNewAccount } = useCreateNewAccount();
